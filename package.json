@@ -1,0 +1,29 @@
+{
+  "name": "budgeting_app",
+  "version": "1.0.0",
+  "description": "A budgeting tool to help users track expenses",
+  "main": "server.js",
+  "scripts": {
+    "sass": "node-sass -w scss/ -o public/css/ --recursive",
+    "start": "node server.js"
+  },
+  "author": "Britney Aronson",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.1.4",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.1",
+    "node-sass": "^4.9.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.38.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.0"
+  }
+}

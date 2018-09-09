@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pennyful - Dashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+  </head>
+
+  <body>
+
+<!-- Side menu -->
+    <section id="sideMenu">
+      <h1>Penny<span>Ful</span></h1>
+      <nav>
+        <a href="/members"><i class="fas fa-home"></i> Home</a>
+        <a href="/members/chart-view"><i class="fas fa-chart-pie"></i> Chart</a>
+        <a href="/members/support" class="active"><i class="far fa-question-circle"></i> Support</a>
+        <a href="/members/settings"><i class="fas fa-cog"></i> Settings</a>
+        <a href="/logout"><i class="far fa-user-circle"></i> Logout</a>
+      </nav>
+    </section>
+
+<!-- Content Section -->
+
+      <section id="content-area">
+        <div class="heading">
+          <h1>Community Support Chat</h1>
+          <p>Talk with other Pennyful members for advice</p>
+          <hr>
+        </div>
+
+        <div class="cards">
+            <span id="status"></span>
+              <h1 class="text-center">
+              </h1>
+
+
+
+              <div id="chat">
+                <input type="text" id="username" class="form-control" placeholder="Enter username...">
+                <br />
+                <br />
+                <div class="card">
+                  <div id="messages" class="card-block">
+
+                  </div>
+                </div>
+                <br />
+                <textarea id="textarea" class="form-control" placeholder="Enter your message..."></textarea>
+              </div>
+
+        </div>
+
+      </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="../js/support.js"></script>
+  </body>
+</html>

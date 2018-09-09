@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pennyful - Dashboard</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  </head>
+
+  <body>
+
+<!-- Side menu -->
+    <section id="sideMenu">
+      <h1>Penny<span>Ful</span></h1>
+      <nav>
+        <a href="/members"><i class="fas fa-home"></i> Home</a>
+        <a href="/members/chart-view" class="active"><i class="fas fa-chart-pie"></i> Chart</a>
+        <a href="/members/support"><i class="far fa-question-circle"></i> Support</a>
+        <a href="/members/settings"><i class="fas fa-cog"></i> Settings</a>
+        <a href="/logout"><i class="far fa-user-circle"></i> Logout</a>
+      </nav>
+    </section>
+
+<!-- Content Section -->
+
+      <section id="content-area">
+        <div class="heading">
+          <h1>Chart View</h1>
+          <p>Visualize your budget better</p>
+          <hr>
+        </div>
+
+        <div class="cards">
+
+            <canvas id="budget-chart" width="900" height="300"></canvas>
+
+        </div>
+
+      </section>
+    <script src="../js/chartview.js"></script>
+  </body>
+</html>
