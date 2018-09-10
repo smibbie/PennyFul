@@ -38,7 +38,7 @@
             <input type="name" id="name" />
             <label>Total Budget: </label>
             <input type="total_balance" id="total_balance"/>
-            <button type="submit">Add</button>
+            <button id="add-btn" type="submit">Add</button>
           </form>
         </div>
 
@@ -46,10 +46,33 @@
 
 
         <!-- card -->
-          <!-- <div class="card">
+          <!-- <div class="card" title="double-click to delete">
             <h4 id="category">Rent</h4>
             <p id="amount">$1250.00</p>
+            <button id="edit-btn">Edit</button>
           </div> -->
+
+          <!-- begin modal -->
+
+          <div id="modal" class="modal">
+            <div id="modal-content" class="modal-content">
+              <span id="close-btn">X</span>
+              <form id="edit-form">
+                <h3>Edit Budget</h3>
+                <label id="modal-label">New Category:</label>
+                <input id="new_name" type="name"/>
+                <br>
+                <br>
+                <label id="modal-label">New Total Budget:</label>
+                <input id="new_total_balance" type="total_balance"/>
+                <br>
+                <br>
+                <button id="edit-btn" type="submit">Confirm</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- /end modal  -->
 
         </div>
 

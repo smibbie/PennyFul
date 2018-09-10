@@ -1,8 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.getElementById('budget');
   const form = document.getElementById('add-budget');
+  const editForm = document.getElementById('edit-form');
+  const modal = document.getElementById('modal');
+  const closeBtn = document.getElementById('close-btn');
   let name = document.getElementById('name');
   let total_balance = document.getElementById('total_balance');
+  let new_name = document.getElementById('new_name');
+  let new_total_balance = document.getElementById('new_total_balance');
+
   let userID = '';
 
 // Initial Fetch ---------------------------------
@@ -51,16 +57,34 @@ document.addEventListener("DOMContentLoaded", () => {
       let card = document.createElement('div');
       card.className = 'card';
       card.setAttribute("data-id", id);
+      card.setAttribute("title", "double-click to delete");
       card.innerHTML =
       `<h4 id="category">${name}</h4>
       <p id="amount">$${total}.00</p>
-      <button>Edit</button>`;
+      <button class="edit-btn" id="edit-btn">Edit</button>`;
       cards.appendChild(card);
     }
   }
 
-  function updateCard() {
+  function updateCard(previousName, data) {
+    console.log('updateCard function called');
 
+    fetch(`/api/budgets/${userID}/${previousName}`, {
+        method: "PUT",
+        headers: {
+          "Accept": "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        window.location.reload();
+      })
+      .catch(err => console.log(err));
   }
 
   function deleteCard(currentCard) {
@@ -87,6 +111,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+  function popModal(previousName) {
+    editForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let data = {
+        name: new_name.value,
+        total_balance: new_total_balance.value,
+      }
+      console.log(data);
+      modal.style.display = 'none';
+      updateCard(previousName, data);
+    });
+  }
+
 // Listeners ---------------------------------------
 
 // Cards collection
@@ -95,6 +132,18 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentCard = e.target;
     console.log(currentCard);
     deleteCard(currentCard);
+  });
+
+  cards.addEventListener("click", (e) => {
+    if (e.target.className === 'edit-btn') {
+      modal.style.display = 'block';
+      console.log(e.target.parentNode);
+      let parentCard = e.target.parentNode;
+      let firstChildElem = parentCard.firstChild;
+      let previousName = firstChildElem.textContent;
+      console.log(previousName);
+      popModal(previousName);
+    }
   });
 
 // Add addition budgets form
@@ -126,6 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(err => console.log(err));
 
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = 'none';
   });
 
   // End of DOM loaded wrapper
