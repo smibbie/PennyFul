@@ -15,6 +15,25 @@ const PORT = process.env.PORT || 8080;
 const mongo = require("mongodb").MongoClient;
 const MONGODB_URI = process.env.MONGOLAB_BLUE_URI || "mongodb://127.0.0.1/mongochat";
 
+// Middleware --------------------------------------------------
+
+// bodyParser
+app.disable('etag');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static("public"));
+
+// Express-Session
+app.use(session({
+   secret: "star wars",
+   resave: true,
+   saveUninitialized: true
+}));
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Connect to Mongo + Socket.io --------------------------
 mongo.connect(MONGODB_URI, (err, client) => {
   if (err) throw err;
@@ -72,25 +91,6 @@ mongo.connect(MONGODB_URI, (err, client) => {
 
   });
 });
-
-
-// Middleware --------------------------------------------------
-
-// bodyParser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static("public"));
-
-// Express-Session
-app.use(session({
-   secret: "star wars",
-   resave: true,
-   saveUninitialized: true
-}));
-
-// Passport
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Router -----------------------------------------------------
 const htmlRoutes = require("./routes/htmlRoutes.js");
