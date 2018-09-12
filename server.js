@@ -103,7 +103,7 @@ app.use(apiRoutes);
 
 // Listener ---------------------------------------------------
 db.sequelize.sync().then(() => {
-  app.listen(PORT, (err) => {
+  server.listen(PORT, (err) => {
     if (err) throw err;
     console.log(`Connected on localhost:${PORT}`);
   });
