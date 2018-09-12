@@ -77,17 +77,8 @@ mongo.connect(MONGODB_URI, (err, client) => {
           });
         });
       }
-    });
 
-    // Handle clear
-    socket.on('clear', (data) => {
-      // Remove all chats from the collection
-      chat.remove({}, () => {
-        // Emit event letting client know everything is clear
-        socket.emit('cleared');
-      });
     });
-
 
   });
 });

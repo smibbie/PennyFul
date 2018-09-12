@@ -25,7 +25,7 @@
 
   // Connect to socket.io
   // add "http://127.0.0.1:4000" to io.connect() arg if needed
-  var socket = io({transports: ['websocket']});
+  var socket = io('https://young-river-84399.herokuapp.com/members/support', {transports: ['websocket']});
 
   // Check for connection
   if (socket !== undefined) {
