@@ -25,7 +25,7 @@
 
   // Connect to socket.io
   // add "http://127.0.0.1:4000" to io.connect() arg if needed
-  var socket = io('https://young-river-84399.herokuapp.com/members/support', {transports: ['websocket']});
+  var socket = io("http://young-river-84399.herokuapp.com", {transports: ['websocket']});
 
   // Check for connection
   if (socket !== undefined) {
@@ -38,7 +38,7 @@
       if (data.length) {
         for (let x = 0; x < data.length; x++) {
           // Build out messages
-          var message = document.createElement('div');
+          let message = document.createElement('div');
           message.setAttribute('class', 'chat-message');
           message.textContent = data[x].name + ": " + data[x].message;
           messages.appendChild(message);
