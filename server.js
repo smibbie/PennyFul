@@ -7,8 +7,8 @@ const db = require("./models");
 
 // PORT/Express/Sockets --------------------------------------------
 const app = express();
-const server = require("http").Server(app);
-const io = require("socket.io")(server).sockets;
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
 const PORT = process.env.PORT || 8080;
 
 // Mongo DB connection -----------------------------------------
@@ -40,7 +40,7 @@ mongo.connect(MONGODB_URI, (err, client) => {
   console.log("MongoDB connected successfully.");
 
   // Connect to Socket.io
-  io.on('connection', (socket) => {
+  io.sockets.on('connection', (socket) => {
     let chat = client.db('mongochat').collection('chats');
 
     // Send status to client from server
@@ -68,7 +68,7 @@ mongo.connect(MONGODB_URI, (err, client) => {
       } else {
         // Insert message
         chat.insert({name: name, message: message}, () => {
-          io.emit('output', [data]);
+          io.sockets.emit('output', [data]);
 
           // Send status object
           sendStatus({
