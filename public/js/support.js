@@ -25,7 +25,7 @@
 
   // Connect to socket.io
   // add "http://127.0.0.1:4000" to io.connect() arg if needed
-  const socket = io(window.location.hostname, {transports: [ 'websocket' ]});
+  const socket = io.connect(window.location.hostname, {});
 
   // Check for connection
   if (socket !== undefined) {
