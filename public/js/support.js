@@ -25,7 +25,10 @@
 
   // Connect to socket.io
   // add "http://127.0.0.1:4000" to io.connect() arg if needed
-  var socket = io.connect(window.location.hostname);
+  const socket = io(window.location.hostname, {
+    // WARNING: in that case, there is no fallback to long-polling
+    transports: [ 'websocket' ] // or [ 'websocket', 'polling' ], which is the same thing
+  })
 
   // Check for connection
   if (socket !== undefined) {
