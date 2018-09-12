@@ -5,16 +5,14 @@ const session = require("express-session");
 const passport = require("./config/passport");
 const db = require("./models");
 
-// PORT and Express --------------------------------------------
-const PORT = process.env.PORT || 8080;
+// PORT/Express/Sockets --------------------------------------------
 const app = express();
-const server = require("http").createServer(app);
-
-// Chat Dependencies ------------------------------------------
-const mongo = require("mongodb").MongoClient;
-const io = require("socket.io").listen(server).sockets;
+const server = require("http").Server(app);
+const io = require("socket.io")(server).sockets;
+const PORT = process.env.PORT || 8080;
 
 // Mongo DB connection -----------------------------------------
+const mongo = require("mongodb").MongoClient;
 const MONGODB_URI = process.env.MONGOLAB_BLUE_URI || "mongodb://127.0.0.1/mongochat";
 
 // Connect to Mongo + Socket.io --------------------------
