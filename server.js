@@ -12,10 +12,8 @@ const io = require("socket.io")(server).sockets;
 const PORT = process.env.PORT || 8080;
 
 // Socket Config -----------------------------------------------
-io.configure(() => {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
-});
+io.use("transports", ["xhr-polling"]);
+io.use("polling duration", 10)
 
 // Mongo DB connection -----------------------------------------
 const mongo = require("mongodb").MongoClient;
