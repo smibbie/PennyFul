@@ -5,19 +5,18 @@ const session = require("express-session");
 const passport = require("./config/passport");
 const db = require("./models");
 
-// Chat Dependencies ------------------------------------------
-const mongo = require("mongodb").MongoClient;
-const io = require("socket.io").listen(4000).sockets;
-
 // PORT and Express --------------------------------------------
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-// Connect to Mongo + Socket.io --------------------------
+// Chat Dependencies ------------------------------------------
+const mongo = require("mongodb").MongoClient;
+const io = require("socket.io").listen(4000).sockets;
 
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+// Mongo DB connection -----------------------------------------
 const MONGODB_URI = process.env.MONGOLAB_BLUE_URI || "mongodb://127.0.0.1/mongochat";
 
+// Connect to Mongo + Socket.io --------------------------
 mongo.connect(MONGODB_URI, (err, client) => {
   if (err) throw err;
   console.log("MongoDB connected successfully.");
