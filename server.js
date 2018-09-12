@@ -11,6 +11,12 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server).sockets;
 const PORT = process.env.PORT || 8080;
 
+// Socket Config -----------------------------------------------
+io.configure(() => {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
 // Mongo DB connection -----------------------------------------
 const mongo = require("mongodb").MongoClient;
 const MONGODB_URI = process.env.MONGOLAB_BLUE_URI || "mongodb://127.0.0.1/mongochat";
