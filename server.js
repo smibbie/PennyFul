@@ -8,11 +8,12 @@ const db = require("./models");
 // PORT and Express --------------------------------------------
 const PORT = process.env.PORT || 8080;
 const app = express();
-const server = require("http").createServer(app);
+// const server = require("http").createServer(app);
 
 // Chat Dependencies ------------------------------------------
 const mongo = require("mongodb").MongoClient;
-const io = require("socket.io").listen(server).sockets;
+// const io = require("socket.io").listen(server).sockets;
+const io = socketIO(app);
 
 // Mongo DB connection -----------------------------------------
 const MONGODB_URI = process.env.MONGOLAB_BLUE_URI || "mongodb://127.0.0.1/mongochat";
@@ -103,7 +104,7 @@ app.use(apiRoutes);
 
 // Listener ---------------------------------------------------
 db.sequelize.sync().then(() => {
-  server.listen(PORT, (err) => {
+  app.listen(PORT, (err) => {
     if (err) throw err;
     console.log(`Connected on localhost:${PORT}`);
   });
