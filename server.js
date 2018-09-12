@@ -14,7 +14,11 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 // Connect to Mongo + Socket.io --------------------------
-mongo.connect("mongodb://127.0.0.1/mongochat", (err, client) => {
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+const MONGODB_URI = process.env.MONGOLAB_BLUE_URI || "mongodb://127.0.0.1/mongochat";
+
+mongo.connect(MONGODB_URI, (err, client) => {
   if (err) throw err;
   console.log("MongoDB connected successfully.");
 
