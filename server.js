@@ -14,8 +14,6 @@ const server = require("http").createServer(app);
 const mongo = require("mongodb").MongoClient;
 const io = require("socket.io").listen(server).sockets;
 
-io.set('transports', ['websocket']);
-
 // Mongo DB connection -----------------------------------------
 const MONGODB_URI = process.env.MONGOLAB_BLUE_URI || "mongodb://127.0.0.1/mongochat";
 
@@ -105,7 +103,7 @@ app.use(apiRoutes);
 
 // Listener ---------------------------------------------------
 db.sequelize.sync().then(() => {
-  app.listen(PORT, (err) => {
+  server.listen(PORT, (err) => {
     if (err) throw err;
     console.log(`Connected on localhost:${PORT}`);
   });
